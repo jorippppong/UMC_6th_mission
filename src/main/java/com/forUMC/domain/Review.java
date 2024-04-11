@@ -4,6 +4,10 @@ import com.forUMC.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.awt.image.ImagingOpException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -13,9 +17,11 @@ public class Review extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Double star;
 
-    private String body; //TODO (여기 text 타입)
+    @Column(length = 1000)
+    private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -24,4 +30,7 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    private List<Image> images = new ArrayList<>();
 }

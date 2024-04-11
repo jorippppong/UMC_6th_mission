@@ -1,11 +1,12 @@
 package com.forUMC.domain;
 
 import com.forUMC.domain.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.forUMC.domain.mapping.MemberAllowance;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,9 +18,14 @@ public class Allowance extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false, length = 1000)
     private String description;
 
     private Boolean optional;
+
+    @OneToMany(mappedBy = "allowance", cascade = CascadeType.ALL)
+    private List<MemberAllowance> memberAllowances = new ArrayList<>();
 }

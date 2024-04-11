@@ -17,6 +17,7 @@ public class MemberMission extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(30) DEFAULT 'CHALLENGING'")
     private MissionStatus missionStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
