@@ -1,8 +1,7 @@
-package com.forUMC.domain;
+package com.forUMC.app.domain;
 
-import com.forUMC.domain.common.BaseEntity;
-import com.forUMC.domain.mapping.MemberMission;
-import jakarta.annotation.Nullable;
+import com.forUMC.app.domain.common.BaseEntity;
+import com.forUMC.app.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
 

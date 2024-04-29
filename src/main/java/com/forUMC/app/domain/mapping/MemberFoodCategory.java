@@ -1,8 +1,8 @@
-package com.forUMC.domain.mapping;
+package com.forUMC.app.domain.mapping;
 
-import com.forUMC.domain.Allowance;
-import com.forUMC.domain.Member;
-import com.forUMC.domain.common.BaseEntity;
+import com.forUMC.app.domain.Member;
+import com.forUMC.app.domain.FoodCategory;
+import com.forUMC.app.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberAllowance extends BaseEntity {
+public class MemberFoodCategory extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -20,6 +20,6 @@ public class MemberAllowance extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "allowance_id")
-    private Allowance allowance;
+    @JoinColumn(name = "food_category_id")
+    private FoodCategory foodCategory;
 }

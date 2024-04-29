@@ -1,6 +1,6 @@
-package com.forUMC.domain;
+package com.forUMC.app.domain;
 
-import com.forUMC.domain.common.BaseEntity;
+import com.forUMC.app.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

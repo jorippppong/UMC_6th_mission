@@ -1,12 +1,12 @@
-package com.forUMC.domain;
+package com.forUMC.app.domain;
 
-import com.forUMC.domain.common.BaseEntity;
-import com.forUMC.domain.enums.Gender;
-import com.forUMC.domain.enums.MemberStatus;
-import com.forUMC.domain.enums.SocialType;
-import com.forUMC.domain.mapping.MemberAllowance;
-import com.forUMC.domain.mapping.MemberFoodCategory;
-import com.forUMC.domain.mapping.MemberMission;
+import com.forUMC.app.domain.enums.Gender;
+import com.forUMC.app.domain.enums.MemberStatus;
+import com.forUMC.app.domain.common.BaseEntity;
+import com.forUMC.app.domain.enums.SocialType;
+import com.forUMC.app.domain.mapping.MemberAllowance;
+import com.forUMC.app.domain.mapping.MemberFoodCategory;
+import com.forUMC.app.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
 

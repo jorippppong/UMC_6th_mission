@@ -1,4 +1,4 @@
-package com.forUMC.domain.enums;
+package com.forUMC.app.domain.enums;
 
 public enum Gender {
     MALE, FEMALE

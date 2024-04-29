@@ -1,9 +1,9 @@
-package com.forUMC.domain.mapping;
+package com.forUMC.app.domain.mapping;
 
-import com.forUMC.domain.Member;
-import com.forUMC.domain.Mission;
-import com.forUMC.domain.common.BaseEntity;
-import com.forUMC.domain.enums.MissionStatus;
+import com.forUMC.app.domain.Member;
+import com.forUMC.app.domain.Mission;
+import com.forUMC.app.domain.enums.MissionStatus;
+import com.forUMC.app.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
