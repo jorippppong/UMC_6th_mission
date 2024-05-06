@@ -1,4 +1,4 @@
-package com.forUMC.app.service.tempService;
+package com.forUMC.app.service.temp;
 
 import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
 import com.forUMC.global.exception.handler.TempHandler;

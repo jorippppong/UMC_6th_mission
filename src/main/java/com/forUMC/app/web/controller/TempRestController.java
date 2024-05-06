@@ -1,7 +1,8 @@
 package com.forUMC.app.web.controller;
 
 import com.forUMC.app.converter.TempConverter;
-import com.forUMC.app.service.tempService.TempQueryService;
+import com.forUMC.app.repository.TempRepository;
+import com.forUMC.app.service.temp.TempQueryService;
 import com.forUMC.app.web.dto.TempResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TempRestController {
     private final TempQueryService tempQueryService;
+    private final TempRepository tempRepository;
+
     @GetMapping("/test")
     public ApiResponse<TempResponse.TempTestDTO> testAPI(){
-
         return ApiResponse.onSuccess(TempConverter.toTempTestDTO());
     }
 
