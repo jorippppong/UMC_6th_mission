@@ -9,6 +9,9 @@ import com.forUMC.app.domain.mapping.MemberFoodCategory;
 import com.forUMC.app.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +19,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -46,9 +51,10 @@ public class Member extends BaseEntity {
     @Column(length = 20)
     private SocialType socialType;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     // private Boolean locationAllowance;
