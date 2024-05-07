@@ -6,7 +6,7 @@ import com.forUMC.app.service.mission.MissionCommendService;
 import com.forUMC.app.web.dto.MissionRequest;
 import com.forUMC.app.web.dto.MissionResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
-import com.forUMC.global.validation.annotation.ExistRestaurants;
+import com.forUMC.global.validation.annotation.ExistRestaurant;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -21,10 +21,11 @@ public class MissionRestController {
 
     @PostMapping("")
     public ApiResponse<MissionResponse.addMissionResultDTO> addMission(
-            @ExistRestaurants @RequestParam(value = "restaurantId", required = true) Long restaurantId,
+            @ExistRestaurant @RequestParam(value = "restaurantId", required = true) Long restaurantId,
             @RequestBody @Valid MissionRequest.addMissionDTO request
         ){
         Mission mission = missionCommendService.addMission(restaurantId, request);
         return ApiResponse.onSuccess(MissionConverter.toAddMissionResultDTO(mission));
     }
+
 }

@@ -1,26 +1,24 @@
 package com.forUMC.global.validation.validator;
 
-import com.forUMC.app.repository.MemberRepository;
+import com.forUMC.app.repository.RestaurantRepository;
 import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
-import com.forUMC.global.validation.annotation.ExistMembers;
+import com.forUMC.global.validation.annotation.ExistRestaurant;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class MembersExistValidator implements ConstraintValidator<ExistMembers, Long> {
-    private final MemberRepository memberRepository;
-
+public class RestaurantExistValidator implements ConstraintValidator<ExistRestaurant, Long> {
+    private final RestaurantRepository restaurantRepository;
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        boolean isValid = memberRepository.existsById(value);
+        boolean isValid = restaurantRepository.existsById(value);
 
         if(!isValid){
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.MEMBER_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.RESTAURANT_NOT_FOUND.toString()).addConstraintViolation();
         }
 
         return isValid;

@@ -1,15 +1,14 @@
 package com.forUMC.app.web.controller;
 
 import com.forUMC.app.converter.ReviewConverter;
-import com.forUMC.app.domain.Member;
 import com.forUMC.app.domain.Review;
 import com.forUMC.app.repository.ReviewRepository;
 import com.forUMC.app.service.review.ReviewCommandService;
 import com.forUMC.app.web.dto.ReviewRequest;
 import com.forUMC.app.web.dto.ReviewResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
-import com.forUMC.global.validation.annotation.ExistMembers;
-import com.forUMC.global.validation.annotation.ExistRestaurants;
+import com.forUMC.global.validation.annotation.ExistMember;
+import com.forUMC.global.validation.annotation.ExistRestaurant;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -25,8 +24,8 @@ public class ReviewRestController {
 
     @PostMapping("")
     public ApiResponse<ReviewResponse.addReviewResultDTO> addReview(
-            @RequestParam(value = "memberId", required = true) @ExistMembers Long memberId,
-            @RequestParam(value = "restaurantId", required = true) @ExistRestaurants Long restaurantId,
+            @RequestParam(value = "memberId", required = true) @ExistMember Long memberId,
+            @RequestParam(value = "restaurantId", required = true) @ExistRestaurant Long restaurantId,
             @RequestBody @Valid ReviewRequest.AddReviewDTO request
         ){
         Review review = reviewCommandService.addReview(memberId, restaurantId, request);

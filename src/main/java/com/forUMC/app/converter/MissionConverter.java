@@ -5,7 +5,6 @@ import com.forUMC.app.web.dto.MissionRequest;
 import com.forUMC.app.web.dto.MissionResponse;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class MissionConverter {
     public static MissionResponse.addMissionResultDTO toAddMissionResultDTO(Mission mission){
@@ -19,7 +18,7 @@ public class MissionConverter {
         return Mission.builder()
                 .point(request.getPoint())
                 .foodPrice(request.getFoodPrice())
-                // TODO .deadline(request.getDeadline())
+                .deadline(request.getDeadLine())
                 .deadline(LocalDate.now())
                 .build();
     }

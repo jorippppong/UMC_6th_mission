@@ -8,6 +8,7 @@ import com.forUMC.app.web.dto.RestaurantResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/restaurants")
 @RequiredArgsConstructor
+@Validated
 public class RestaurantRestController {
     private final RestaurantCommandService restaurantCommandService;
 

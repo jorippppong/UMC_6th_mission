@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MemberRequest {
@@ -13,19 +14,15 @@ public class MemberRequest {
     @Getter
     public static class JoinDTO {
         @NotBlank
-        String name;
+        private String name;
         @NotNull
-        Integer gender;
+        private Integer gender;
         @NotNull
-        Integer birthYear;
-        @NotNull
-        Integer birthMonth;
-        @NotNull
-        Integer birthDay;
+        private LocalDate birthday;
         @Size(min = 5, max = 5)
-        String zipcode;
-        String address;
+        private String zipcode;
+        private String address;
         @ExistFoodCategories
-        List<Long> preferCategory;
+        private List<Long> preferCategory;
     }
 }

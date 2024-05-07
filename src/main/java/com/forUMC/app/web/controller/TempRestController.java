@@ -6,6 +6,7 @@ import com.forUMC.app.service.temp.TempQueryService;
 import com.forUMC.app.web.dto.TempResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/temp")
 @RequiredArgsConstructor
+@Validated
 public class TempRestController {
     private final TempQueryService tempQueryService;
     private final TempRepository tempRepository;

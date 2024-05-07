@@ -1,13 +1,10 @@
 package com.forUMC.app.domain;
 
 import com.forUMC.app.domain.common.BaseEntity;
-import com.forUMC.app.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

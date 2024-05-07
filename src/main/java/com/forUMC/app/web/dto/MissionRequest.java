@@ -15,6 +15,6 @@ public class MissionRequest {
         private Integer point;
         @NotNull
         private Integer foodPrice;
-        private LocalDate deadLine; //TODO 역직렬화 확인
+        private LocalDate deadLine;
     }
 }
