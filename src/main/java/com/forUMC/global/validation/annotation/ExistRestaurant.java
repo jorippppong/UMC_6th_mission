@@ -1,17 +1,17 @@
 package com.forUMC.global.validation.annotation;
 
-import com.forUMC.global.validation.validatot.CategoriesExistValidator;
+import com.forUMC.global.validation.validator.RestaurantExistValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = CategoriesExistValidator.class)
+@Constraint(validatedBy = RestaurantExistValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExistCategories {
-    String message() default "해당하는 음식 카테고리가 존재하지 않습니다.";
+public @interface ExistRestaurant {
+    String message() default "해당하는 식당이 존재하지 않습니다.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

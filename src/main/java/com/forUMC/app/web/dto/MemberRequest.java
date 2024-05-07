@@ -1,11 +1,12 @@
 package com.forUMC.app.web.dto;
 
-import com.forUMC.global.validation.annotation.ExistCategories;
+import com.forUMC.global.validation.annotation.ExistFoodCategories;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MemberRequest {
@@ -13,19 +14,15 @@ public class MemberRequest {
     @Getter
     public static class JoinDTO {
         @NotBlank
-        String name;
+        private String name;
         @NotNull
-        Integer gender;
+        private Integer gender;
         @NotNull
-        Integer birthYear;
-        @NotNull
-        Integer birthMonth;
-        @NotNull
-        Integer birthDay;
+        private LocalDate birthday;
         @Size(min = 5, max = 5)
-        String zipcode;
-        String address;
-        @ExistCategories
-        List<Long> preferCategory;
+        private String zipcode;
+        private String address;
+        @ExistFoodCategories
+        private List<Long> preferCategory;
     }
 }

@@ -26,7 +26,7 @@ public class MemberConverter {
         return Member.builder()
                 .name(request.getName())
                 .gender(gender)
-                //.birthday()  //TODO
+                .birthday(request.getBirthday())
                 .zipcode(request.getZipcode())
                 .address(request.getAddress())
                 .memberFoodCategories(new ArrayList<>())

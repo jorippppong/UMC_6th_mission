@@ -6,7 +6,6 @@ import com.forUMC.app.domain.common.BaseEntity;
 import com.forUMC.app.domain.enums.SocialType;
 import com.forUMC.app.domain.mapping.MemberAllowance;
 import com.forUMC.app.domain.mapping.MemberFoodCategory;
-import com.forUMC.app.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -66,8 +65,8 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberFoodCategory> memberFoodCategories = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissions = new ArrayList<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<ChallengeMission> challengeMissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();

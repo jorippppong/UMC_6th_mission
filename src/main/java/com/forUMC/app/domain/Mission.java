@@ -1,13 +1,10 @@
 package com.forUMC.app.domain;
 
 import com.forUMC.app.domain.common.BaseEntity;
-import com.forUMC.app.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -32,6 +29,12 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissions = new ArrayList<>();
+//    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+//    private List<MemberMission> memberMissions = new ArrayList<>();
+
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+        restaurant.getMissions().add(this);
+    }
 }
