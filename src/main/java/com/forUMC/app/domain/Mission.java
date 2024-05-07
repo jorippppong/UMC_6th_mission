@@ -32,6 +32,6 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissions = new ArrayList<>();
+//    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+//    private List<MemberMission> memberMissions = new ArrayList<>();
 }

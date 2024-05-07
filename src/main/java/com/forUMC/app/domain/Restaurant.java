@@ -1,5 +1,6 @@
 package com.forUMC.app.domain;
 
+import com.forUMC.app.converter.RestaurantConverter;
 import com.forUMC.app.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,9 +27,13 @@ public class Restaurant extends BaseEntity {
     @JoinColumn(name = "restaurant_category_id")
     private RestaurantCategory restaurantCategory;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Mission> missions = new ArrayList<>();
+//    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+//    private List<Mission> missions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.REMOVE)
     private List<Review> reviews = new ArrayList<>();
+
+    public void setRestaurantCategory(RestaurantCategory restaurantCategory){
+        this.restaurantCategory = restaurantCategory;
+    }
 }

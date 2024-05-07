@@ -1,9 +1,8 @@
-package com.forUMC.global.validation.validatot;
+package com.forUMC.global.validation.validator;
 
-import com.forUMC.app.domain.FoodCategory;
 import com.forUMC.app.repository.FoodCategoryRepository;
 import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
-import com.forUMC.global.validation.annotation.ExistCategories;
+import com.forUMC.global.validation.annotation.ExistFoodCategories;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
+public class FoodCategoriesExistValidator implements ConstraintValidator<ExistFoodCategories, List<Long>> {
     private final FoodCategoryRepository foodCategoryRepository;
 
     @Override

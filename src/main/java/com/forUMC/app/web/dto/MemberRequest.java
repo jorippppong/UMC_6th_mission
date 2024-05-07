@@ -1,6 +1,6 @@
 package com.forUMC.app.web.dto;
 
-import com.forUMC.global.validation.annotation.ExistCategories;
+import com.forUMC.global.validation.annotation.ExistFoodCategories;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,7 +25,7 @@ public class MemberRequest {
         @Size(min = 5, max = 5)
         String zipcode;
         String address;
-        @ExistCategories
+        @ExistFoodCategories
         List<Long> preferCategory;
     }
 }
