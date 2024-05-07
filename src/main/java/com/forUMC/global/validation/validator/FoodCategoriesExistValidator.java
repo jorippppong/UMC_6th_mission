@@ -1,6 +1,6 @@
 package com.forUMC.global.validation.validator;
 
-import com.forUMC.app.repository.FoodCategoryRepository;
+import com.forUMC.app.service.foodCategory.FoodCategoryQueryService;
 import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
 import com.forUMC.global.validation.annotation.ExistFoodCategories;
 import jakarta.validation.ConstraintValidator;
@@ -13,12 +13,15 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class FoodCategoriesExistValidator implements ConstraintValidator<ExistFoodCategories, List<Long>> {
-    private final FoodCategoryRepository foodCategoryRepository;
+    private final FoodCategoryQueryService foodCategoryQueryService;
+    @Override
+    public void initialize(ExistFoodCategories constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
 
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
-        boolean isValid = values.stream()
-                .allMatch(foodCategoryRepository::existsById);
+        boolean isValid = foodCategoryQueryService.existById(values);
 
         if(!isValid){
             context.disableDefaultConstraintViolation();

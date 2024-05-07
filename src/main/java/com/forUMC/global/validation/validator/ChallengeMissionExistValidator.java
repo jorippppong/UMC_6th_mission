@@ -1,7 +1,6 @@
 package com.forUMC.global.validation.validator;
 
-import com.forUMC.app.domain.mapping.ChallengeMission;
-import com.forUMC.app.repository.ChallengeMissionRepository;
+import com.forUMC.app.service.challengeMission.ChallengeMissionQueryService;
 import com.forUMC.app.web.dto.ChallengeMissionRequest;
 import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
 import com.forUMC.global.validation.annotation.ExistChallengeMission;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ChallengeMissionExistValidator implements ConstraintValidator<ExistChallengeMission, ChallengeMissionRequest.AddChallengingMissionDTO> {
-    private final ChallengeMissionRepository challengeMissionRepository;
+    private final ChallengeMissionQueryService challengeMissionQueryService;
 
     @Override
     public void initialize(ExistChallengeMission constraintAnnotation) {
@@ -22,7 +21,7 @@ public class ChallengeMissionExistValidator implements ConstraintValidator<Exist
 
     @Override
     public boolean isValid(ChallengeMissionRequest.AddChallengingMissionDTO value, ConstraintValidatorContext context) {
-        boolean isValid = !challengeMissionRepository.existsByMemberIdAndMissionId(value.getMemberId(), value.getMissionId());
+        boolean isValid = !challengeMissionQueryService.existsByMemberIdAndMissionId(value.getMemberId(), value.getMissionId());
 
         if(!isValid){
             context.disableDefaultConstraintViolation();

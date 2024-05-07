@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/temp")
 @RequiredArgsConstructor
-@Validated
 public class TempRestController {
     private final TempQueryService tempQueryService;
-    private final TempRepository tempRepository;
 
     @GetMapping("/test")
     public ApiResponse<TempResponse.TempTestDTO> testAPI(){

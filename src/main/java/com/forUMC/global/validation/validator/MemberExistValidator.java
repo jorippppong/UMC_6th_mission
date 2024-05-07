@@ -1,6 +1,6 @@
 package com.forUMC.global.validation.validator;
 
-import com.forUMC.app.repository.MemberRepository;
+import com.forUMC.app.service.member.MemberQueryService;
 import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
 import com.forUMC.global.validation.annotation.ExistMember;
 import jakarta.validation.ConstraintValidator;
@@ -11,11 +11,16 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class MemberExistValidator implements ConstraintValidator<ExistMember, Long> {
-    private final MemberRepository memberRepository;
+    private final MemberQueryService memberQueryService;
+
+    @Override
+    public void initialize(ExistMember constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        boolean isValid = memberRepository.existsById(value);
+        boolean isValid = memberQueryService.existById(value);
 
         if(!isValid){
             context.disableDefaultConstraintViolation();
