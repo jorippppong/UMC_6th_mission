@@ -27,8 +27,8 @@ public class Restaurant extends BaseEntity {
     @JoinColumn(name = "restaurant_category_id")
     private RestaurantCategory restaurantCategory;
 
-//    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-//    private List<Mission> missions = new ArrayList<>();
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Mission> missions = new ArrayList<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.REMOVE)
     private List<Review> reviews = new ArrayList<>();

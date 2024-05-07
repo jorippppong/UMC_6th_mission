@@ -12,6 +12,7 @@ import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
 import com.forUMC.global.exception.handler.TempHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
     private final MemberRepository memberRepository;
     private final RestaurantRepository restaurantRepository;
 
+    @Transactional
     @Override
     public Review addReview(Long memberId, Long restaurantId, ReviewRequest.AddReviewDTO request) {
         Review newReview = ReviewConverter.toReview(request);

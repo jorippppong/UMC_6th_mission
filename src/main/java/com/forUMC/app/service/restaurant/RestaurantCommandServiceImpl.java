@@ -10,6 +10,7 @@ import com.forUMC.global.apiPayLoad.code.status.ErrorStatus;
 import com.forUMC.global.exception.handler.TempHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,7 @@ public class RestaurantCommandServiceImpl implements RestaurantCommandService{
     private final RestaurantRepository restaurantRepository;
     private final RestaurantCategoryRepository restaurantCategoryRepository;
 
+    @Transactional
     @Override
     public Restaurant addRestaurant(RestaurantRequest.addRestaurantDTO request) {
         Restaurant newRestaurant = RestaurantConverter.toRestaurant(request);
