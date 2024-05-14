@@ -9,6 +9,7 @@ import com.forUMC.app.web.dto.ReviewResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
 import com.forUMC.global.validation.annotation.ExistMember;
 import com.forUMC.global.validation.annotation.ExistRestaurant;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -34,7 +35,7 @@ public class ReviewRestController {
     }
 
 
-    @DeleteMapping("/")
+    @DeleteMapping("")
     public String deleteReview(
             @RequestParam(value = "reviewId", required = true) @Valid Long reviewId
     ){
@@ -42,6 +43,8 @@ public class ReviewRestController {
         reviewCommandService.check2();
         return "삭제 OK";
     }
+
+
 
 
 }
