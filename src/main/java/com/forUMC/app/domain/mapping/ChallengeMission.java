@@ -40,4 +40,8 @@ public class ChallengeMission extends BaseEntity {
     public void setMission(Mission mission) {
         this.mission = mission;
     }
+
+    public void completeMission(){
+        this.missionStatus = MissionStatus.COMPLETE;
+    }
 }

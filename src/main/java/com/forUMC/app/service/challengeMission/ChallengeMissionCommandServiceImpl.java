@@ -31,4 +31,12 @@ public class ChallengeMissionCommandServiceImpl implements ChallengeMissionComma
         newChallengeMission.setMission(mission);
         return challengeMissionRepository.save(newChallengeMission);
     }
+
+    @Override
+    @Transactional
+    public ChallengeMission completeChallengingMission(Long id) {
+        ChallengeMission challengeMission = challengeMissionRepository.findById(id).orElseThrow(() -> new TempHandler(ErrorStatus.CHALLENGE_MISSION_NOT_EXISTS));
+        challengeMission.completeMission();
+        return challengeMission;
+    }
 }

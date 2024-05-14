@@ -7,6 +7,7 @@ public class ChallengeMissionConverter {
     public static AddChallengingMissionResultDTO toAddChallengingMissionResultDTO(ChallengeMission challengeMission){
         return AddChallengingMissionResultDTO.builder()
                 .challengeMissionId(challengeMission.getId())
+                .missionStatus(challengeMission.getMissionStatus().toString())
                 .createdAt(challengeMission.getCreatedAt())
                 .build();
     }
