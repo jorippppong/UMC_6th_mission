@@ -34,7 +34,7 @@ public class MissionResponse {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class RestaurantMissionDTO {
+    public static class MissionDTO {
         private Integer point;
         private Integer foodPrice;
         private LocalDate deadline;

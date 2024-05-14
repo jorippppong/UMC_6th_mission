@@ -4,6 +4,7 @@ import com.forUMC.app.converter.ChallengeMissionConverter;
 import com.forUMC.app.domain.Member;
 import com.forUMC.app.domain.Mission;
 import com.forUMC.app.domain.mapping.ChallengeMission;
+import com.forUMC.app.repository.ChallengeMissionRepository;
 import com.forUMC.app.repository.MemberRepository;
 import com.forUMC.app.repository.MissionRepository;
 import com.forUMC.app.web.dto.ChallengeMissionRequest;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChallengeMissionCommandServiceImpl implements ChallengeMissionCommandService {
     private final MemberRepository memberRepository;
     private final MissionRepository missionRepository;
+    private final ChallengeMissionRepository challengeMissionRepository;
 
     @Transactional
     @Override
@@ -27,6 +29,6 @@ public class ChallengeMissionCommandServiceImpl implements ChallengeMissionComma
         Mission mission = missionRepository.findById(request.getMissionId()).orElseThrow(() -> new TempHandler(ErrorStatus.MEMBER_NOT_FOUND));
         newChallengeMission.setMember(member);
         newChallengeMission.setMission(mission);
-        return newChallengeMission;
+        return challengeMissionRepository.save(newChallengeMission);
     }
 }

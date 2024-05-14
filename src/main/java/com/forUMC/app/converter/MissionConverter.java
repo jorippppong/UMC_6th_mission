@@ -25,17 +25,25 @@ public class MissionConverter {
                 .build();
     }
 
-    public static MissionResponse.MissionListDTO<MissionResponse.RestaurantMissionDTO> toRestaurantMissionListDTO(Restaurant restaurant, Integer page){
-        return MissionResponse.MissionListDTO.<MissionResponse.RestaurantMissionDTO>builder()
+    public static MissionResponse.MissionListDTO<MissionResponse.MissionDTO> toMissionListDTO(Restaurant restaurant, Integer page){
+        return MissionResponse.MissionListDTO.<MissionResponse.MissionDTO>builder()
                 .listSize(restaurant.getMissions().size())
                 .listPage(page)
                 .missionList(toRestaurantMissionDTO(restaurant.getMissions()))
                 .build();
     }
 
-    public static List<MissionResponse.RestaurantMissionDTO> toRestaurantMissionDTO(List<Mission> missionList){
+    public static MissionResponse.MissionListDTO<MissionResponse.MissionDTO> toMissionListDTO(List<Mission> missionList, Integer page){
+        return MissionResponse.MissionListDTO.<MissionResponse.MissionDTO>builder()
+                .listSize(missionList.size())
+                .listPage(page)
+                .missionList(toRestaurantMissionDTO(missionList))
+                .build();
+    }
+
+    public static List<MissionResponse.MissionDTO> toRestaurantMissionDTO(List<Mission> missionList){
         return missionList.stream().map(m ->
-                MissionResponse.RestaurantMissionDTO.builder()
+                MissionResponse.MissionDTO.builder()
                         .point(m.getPoint())
                         .foodPrice(m.getFoodPrice())
                         .deadline(m.getDeadline())

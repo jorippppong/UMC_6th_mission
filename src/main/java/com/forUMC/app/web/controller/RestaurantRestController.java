@@ -68,12 +68,12 @@ public class RestaurantRestController {
             @Parameter(name = "restaurantId", description = "가게의 아이디, path variable 입니다!"),
             @Parameter(name = "page", description = "페이지 번호, 1 이상의 정수를 작성해주세요.")
     })
-    public ApiResponse<MissionResponse.MissionListDTO<MissionResponse.RestaurantMissionDTO>> getMissions(
+    public ApiResponse<MissionResponse.MissionListDTO<MissionResponse.MissionDTO>> getMissions(
             @ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId,
             @PageNumberOverOne @RequestParam(name = "page") Integer page
     ){
         Restaurant restaurant = restaurantQueryService.getMissions(restaurantId, page);
-        return ApiResponse.onSuccess(MissionConverter.toRestaurantMissionListDTO(restaurant, page));
+        return ApiResponse.onSuccess(MissionConverter.toMissionListDTO(restaurant, page));
     }
 
 }
