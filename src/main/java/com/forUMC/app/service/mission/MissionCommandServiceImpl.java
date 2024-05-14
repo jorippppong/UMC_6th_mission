@@ -1,10 +1,8 @@
 package com.forUMC.app.service.mission;
 
 import com.forUMC.app.converter.MissionConverter;
-import com.forUMC.app.domain.Member;
 import com.forUMC.app.domain.Mission;
 import com.forUMC.app.domain.Restaurant;
-import com.forUMC.app.repository.MemberRepository;
 import com.forUMC.app.repository.MissionRepository;
 import com.forUMC.app.repository.RestaurantRepository;
 import com.forUMC.app.web.dto.MissionRequest;
@@ -16,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class MissionCommandServiceImpl implements MissionCommendService{
+public class MissionCommandServiceImpl implements MissionCommandService {
     private final MissionRepository missionRepository;
     private final RestaurantRepository restaurantRepository;
 

@@ -2,7 +2,7 @@ package com.forUMC.app.web.controller;
 
 import com.forUMC.app.converter.MissionConverter;
 import com.forUMC.app.domain.Mission;
-import com.forUMC.app.service.mission.MissionCommendService;
+import com.forUMC.app.service.mission.MissionCommandService;
 import com.forUMC.app.web.dto.MissionRequest;
 import com.forUMC.app.web.dto.MissionResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Validated
 public class MissionRestController {
-    private final MissionCommendService missionCommendService;
+    private final MissionCommandService missionCommandService;
 
     @PostMapping("")
     public ApiResponse<MissionResponse.addMissionResultDTO> addMission(
             @ExistRestaurant @RequestParam(value = "restaurantId", required = true) Long restaurantId,
             @RequestBody @Valid MissionRequest.addMissionDTO request
         ){
-        Mission mission = missionCommendService.addMission(restaurantId, request);
+        Mission mission = missionCommandService.addMission(restaurantId, request);
         return ApiResponse.onSuccess(MissionConverter.toAddMissionResultDTO(mission));
     }
 
