@@ -1,16 +1,19 @@
 package com.forUMC.app.web.controller;
 
+import com.forUMC.app.converter.MissionConverter;
 import com.forUMC.app.converter.RestaurantConverter;
 import com.forUMC.app.converter.ReviewConverter;
 import com.forUMC.app.domain.Restaurant;
 import com.forUMC.app.domain.Review;
 import com.forUMC.app.service.restaurant.RestaurantCommandService;
 import com.forUMC.app.service.restaurant.RestaurantQueryService;
+import com.forUMC.app.web.dto.MissionResponse;
 import com.forUMC.app.web.dto.RestaurantRequest;
 import com.forUMC.app.web.dto.RestaurantResponse;
 import com.forUMC.app.web.dto.ReviewResponse;
 import com.forUMC.global.apiPayLoad.ApiResponse;
 import com.forUMC.global.validation.annotation.ExistRestaurant;
+import com.forUMC.global.validation.annotation.PageNumberOverOne;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -48,7 +51,7 @@ public class RestaurantRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
     })
     @Parameters({
-            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
+            @Parameter(name = "restaurantId", description = "가게의 아이디, path variable 입니다!"),
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다.")
     })
     public ApiResponse<ReviewResponse.ReviewPreviewListDTO<ReviewResponse.RestaurantReviewPreviewDTO>> getReviewList(
@@ -57,6 +60,20 @@ public class RestaurantRestController {
     ){
         Page<Review> reviewPage = restaurantQueryService.getReviewList(restaurantId, page);
         return ApiResponse.onSuccess(ReviewConverter.toRestaurantReviewPreviewListDTO(reviewPage));
+    }
+
+    @GetMapping("/{restaurantId}/missions")
+    @Operation(summary = "특정 가게의 미션 목록 조회 API", description = "특정 가게의 미션들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String으로 page 번호를 주세요")
+    @Parameters({
+            @Parameter(name = "restaurantId", description = "가게의 아이디, path variable 입니다!"),
+            @Parameter(name = "page", description = "페이지 번호, 1 이상의 정수를 작성해주세요.")
+    })
+    public ApiResponse<MissionResponse.MissionListDTO<MissionResponse.RestaurantMissionDTO>> getMissions(
+            @ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId,
+            @PageNumberOverOne @RequestParam(name = "page") Integer page
+    ){
+        Restaurant restaurant = restaurantQueryService.getMissions(restaurantId, page);
+        return ApiResponse.onSuccess(MissionConverter.toRestaurantMissionListDTO(restaurant, page));
     }
 
 }

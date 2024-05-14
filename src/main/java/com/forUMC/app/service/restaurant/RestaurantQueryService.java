@@ -10,4 +10,5 @@ public interface RestaurantQueryService {
     public boolean existById(Long id);
     Optional<Restaurant> findRestaurant(Long id);
     Page<Review> getReviewList(Long restaurantId, Integer page);
+    Restaurant getMissions(Long restaurantId, Integer page);
 }

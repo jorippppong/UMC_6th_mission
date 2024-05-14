@@ -1,6 +1,7 @@
 package com.forUMC.app.converter;
 
 import com.forUMC.app.domain.Member;
+import com.forUMC.app.domain.Restaurant;
 import com.forUMC.app.domain.Review;
 import com.forUMC.app.web.dto.ReviewRequest;
 import com.forUMC.app.web.dto.ReviewResponse;
@@ -8,9 +9,11 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
+import static com.forUMC.app.web.dto.ReviewResponse.*;
+
 public class ReviewConverter {
-    public static ReviewResponse.addReviewResultDTO toAddReviewResultDTO(Review review){
-        return ReviewResponse.addReviewResultDTO.builder()
+    public static addReviewResultDTO toAddReviewResultDTO(Review review){
+        return addReviewResultDTO.builder()
                 .reviewId(review.getId())
                 .createdAt(review.getCreatedAt())
                 .build();
@@ -23,10 +26,10 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static ReviewResponse.ReviewPreviewListDTO<ReviewResponse.RestaurantReviewPreviewDTO> toRestaurantReviewPreviewListDTO(Page<Review> reviewList){
-        List<ReviewResponse.RestaurantReviewPreviewDTO> restaurantReviewPreviewDTOS = reviewList.stream()
+    public static ReviewResponse.ReviewPreviewListDTO<RestaurantReviewPreviewDTO> toRestaurantReviewPreviewListDTO(Page<Review> reviewList){
+        List<RestaurantReviewPreviewDTO> restaurantReviewPreviewDTOS = reviewList.stream()
                 .map(ReviewConverter::toReviewPreviewDTO).toList();
-        return ReviewResponse.ReviewPreviewListDTO.<ReviewResponse.RestaurantReviewPreviewDTO>builder()
+        return ReviewPreviewListDTO.<RestaurantReviewPreviewDTO>builder()
                 .isLast(reviewList.isLast())
                 .isFirst(reviewList.isFirst())
                 .totalPage(reviewList.getTotalPages())
@@ -36,8 +39,8 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static ReviewResponse.RestaurantReviewPreviewDTO toReviewPreviewDTO(Review review){
-        return ReviewResponse.RestaurantReviewPreviewDTO.builder()
+    public static RestaurantReviewPreviewDTO toReviewPreviewDTO(Review review){
+        return RestaurantReviewPreviewDTO.builder()
                 .nickname(review.getMember().getName())
                 .score(review.getStar())
                 .createdAt(review.getCreatedAt().toLocalDate())
@@ -45,17 +48,17 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static ReviewResponse.ReviewPreviewList2DTO<ReviewResponse.MemberReviewPreviewDTO> toMemberReviewPreviewListDTO(Member member, Integer page){
-        return ReviewResponse.ReviewPreviewList2DTO.<ReviewResponse.MemberReviewPreviewDTO>builder()
+    public static ReviewResponse.ReviewPreviewList2DTO<MemberReviewPreviewDTO> toMemberReviewPreviewListDTO(Member member, Integer page){
+        return ReviewPreviewList2DTO.<MemberReviewPreviewDTO>builder()
                 .listPage(page)
                 .listSize(member.getReviews().size())
                 .reviewList(toMemberReviewPreviewDTO(member))
                 .build();
     }
 
-    public static List<ReviewResponse.MemberReviewPreviewDTO> toMemberReviewPreviewDTO(Member member){
+    public static List<MemberReviewPreviewDTO> toMemberReviewPreviewDTO(Member member){
         return member.getReviews().stream().map(r ->
-                ReviewResponse.MemberReviewPreviewDTO.builder()
+                MemberReviewPreviewDTO.builder()
                         .nickname(member.getName())
                         .score(r.getStar())
                         .body(r.getBody())
