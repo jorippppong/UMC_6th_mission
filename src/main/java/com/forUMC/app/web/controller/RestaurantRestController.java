@@ -23,8 +23,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
 @RestController
 @RequestMapping("/restaurants")
 @RequiredArgsConstructor
@@ -53,12 +51,12 @@ public class RestaurantRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다.")
     })
-    public ApiResponse<ReviewResponse.ReviewPreviewListDTO> getReviewList(
+    public ApiResponse<ReviewResponse.ReviewPreviewListDTO<ReviewResponse.RestaurantReviewPreviewDTO>> getReviewList(
             @ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId,
             @RequestParam(name = "page") Integer page
     ){
         Page<Review> reviewPage = restaurantQueryService.getReviewList(restaurantId, page);
-        return ApiResponse.onSuccess(ReviewConverter.toReviewPreviewListDTO(reviewPage));
+        return ApiResponse.onSuccess(ReviewConverter.toRestaurantReviewPreviewListDTO(reviewPage));
     }
 
 }
