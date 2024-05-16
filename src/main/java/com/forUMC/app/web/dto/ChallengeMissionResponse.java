@@ -14,6 +14,7 @@ public class ChallengeMissionResponse {
     @AllArgsConstructor
     public static class AddChallengingMissionResultDTO{
         private Long challengeMissionId;
+        private String missionStatus;
         private LocalDateTime createdAt;
     }
 }

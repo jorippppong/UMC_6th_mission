@@ -2,6 +2,7 @@ package com.forUMC.app.service.restaurant;
 
 import com.forUMC.app.domain.Restaurant;
 import com.forUMC.app.domain.Review;
+import com.forUMC.app.repository.RestaurantQueryRepository;
 import com.forUMC.app.repository.RestaurantRepository;
 import com.forUMC.app.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,9 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class RestaurantQueryServiceImpl implements RestaurantQueryService{
     private final RestaurantRepository restaurantRepository;
+    private final RestaurantQueryRepository restaurantQueryRepository;
     private final ReviewRepository reviewRepository;
+
 
     @Override
     public boolean existById(Long id) {
@@ -33,5 +36,10 @@ public class RestaurantQueryServiceImpl implements RestaurantQueryService{
     public Page<Review> getReviewList(Long restaurantId, Integer page) {
         Restaurant restaurant = findRestaurant(restaurantId).get();
         return reviewRepository.findAllByRestaurant(restaurant, PageRequest.of(page, 10));
+    }
+
+    @Override
+    public Restaurant getMissions(Long restaurantId, Integer page) {
+        return restaurantQueryRepository.getMissions(restaurantId, page-1, 10);
     }
 }

@@ -46,18 +46,6 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler{
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> validation(ConstraintViolationException e, WebRequest request) {
-//        Map<String, List<String>> errors = new HashMap<>();
-//
-//        e.getConstraintViolations().forEach(violation -> {
-//            String fieldName = violation.getPropertyPath().toString();
-//            String errorMessage = violation.getMessage();
-//            errors.computeIfAbsent(fieldName, k -> new ArrayList<>())
-//                    .add(errorMessage);
-//        });
-//
-//        return handleExceptionInternalArgs(e,HttpHeaders.EMPTY,ErrorStatus.valueOf("_BAD_REQUEST"),request,errors);
-
-
         String errorMessage = e.getConstraintViolations().stream()
                 .map(ConstraintViolation::getMessage)
                 .findFirst()

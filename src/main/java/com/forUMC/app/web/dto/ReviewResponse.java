@@ -23,8 +23,8 @@ public class ReviewResponse {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class ReviewPreviewListDTO{
-        private List<ReviewPreviewDTO> reviewList;
+    public static class ReviewPreviewListDTO<T>{
+        private List<T> reviewList;
         private Integer listSize;
         private Integer totalPage;
         private Long totalElements;
@@ -36,10 +36,34 @@ public class ReviewResponse {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class ReviewPreviewDTO{
+    public static class RestaurantReviewPreviewDTO {
         private String nickname;
         private Double score;
         private String body;
         private LocalDate createdAt;
     }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ReviewPreviewList2DTO<T>{
+        private List<T> reviewList;
+        private Integer listSize;
+        private Integer listPage;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class MemberReviewPreviewDTO{
+        private String nickname;
+        private Double score;
+        private String body;
+        private LocalDate createdAt;
+        private Long RestaurantId;
+        private String RestaurantName;
+    }
+
 }
