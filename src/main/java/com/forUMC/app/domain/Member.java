@@ -7,6 +7,7 @@ import com.forUMC.app.domain.enums.SocialType;
 import com.forUMC.app.domain.mapping.MemberAllowance;
 import com.forUMC.app.domain.mapping.MemberFoodCategory;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
