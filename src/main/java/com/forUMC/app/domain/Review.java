@@ -2,6 +2,7 @@ package com.forUMC.app.domain;
 
 import com.forUMC.app.domain.common.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class Review extends BaseEntity {
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<Image> images = new ArrayList<>();
+
 
     public void setMember(Member member) {
         this.member = member;

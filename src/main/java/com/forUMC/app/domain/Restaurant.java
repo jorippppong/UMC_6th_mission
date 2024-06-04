@@ -14,6 +14,12 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Restaurant extends BaseEntity {
+//    // 1. join fetch 0
+//    1(식당) + 1(리뷰)
+//
+//    // 2 join fetch X
+//    1(식당) + 1 (식당 타입) +  1(리뷰)
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
